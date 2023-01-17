@@ -1,5 +1,5 @@
 // react imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // component imports
 import Scoreboard from "./components/scoreboard";
 import Animals from "./components/animals";
@@ -10,6 +10,22 @@ const App = ({ animalTemplate }) => {
   const [bestScore, setBestScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const [animals, setAnimals] = useState(animalTemplate.map(animal => ({...animal})));
+
+  useEffect(() => {
+    let anyClicked = false;
+    for (let i = 0; i < animals.length; i++) {
+      if (animals[i].clicked) {
+        anyClicked = true;
+        break;
+      }
+    }
+    if (!anyClicked) {
+      return;
+    }
+    const copy = [...animals];
+    const shuffled = shuffle(copy);
+    setAnimals(shuffled);
+  }, [currentScore, animals]);
 
   const correctGuess = (animal) => {
     const copy = [...animals];
@@ -26,6 +42,19 @@ const App = ({ animalTemplate }) => {
   const wrongGuess = () => {
     setAnimals(animalTemplate.map(animal => ({...animal})));
     setCurrentScore(0);
+  }
+
+  const shuffle = (array) => {
+
+    let currentIndex = array.length, randomIndex;
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
   }
 
   return (
