@@ -66,4 +66,4 @@ const animals = [
     }
 ];
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(<App animalTemplate={animals} />);

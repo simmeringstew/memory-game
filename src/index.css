@@ -1,7 +1,10 @@
 @import url('https://api.fonts.coollabs.io/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-  
+  --clr-black: #121212;
+  --clr-black-seconday: #1a1a1a;
+  --clr-text-main: rgba(255, 255, 255, 0.87);
+  --clr-text-secondary: rgba(255, 255, 255, 0.67);
 }
 
 *, *::before, *::after {
@@ -37,7 +40,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   text-rendering: optimizeSpeed;
-  background-color: var(--clr-black-main);
+  background-color: var(--clr-black);
   color: var(--clr-text-secondary);
 }
 
