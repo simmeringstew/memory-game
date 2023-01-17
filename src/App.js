@@ -14,9 +14,11 @@ const App = ({ animalTemplate }) => {
   return (
     <div className="container">
       <Scoreboard bestScore={bestScore} currentScore={currentScore} />
-      {animals.map(animal =>
-      <Animals key={animal.id} src={animal.src} clicked={animal.clicked} />
-      )}
+      <div className="animal-container">
+        {animals.map(animal =>
+        <Animals key={animal.id} src={animal.src} clicked={animal.clicked} />
+        )}
+      </div>
     </div>
   );
 }
