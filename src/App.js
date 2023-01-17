@@ -9,7 +9,7 @@ const App = ({ animalTemplate }) => {
 
   const [bestScore, setBestScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
-  const [animals, setAnimals] = useState([...animalTemplate]);
+  const [animals, setAnimals] = useState(animalTemplate.map(animal => ({...animal})));
 
   const correctGuess = (animal) => {
     const copy = [...animals];
@@ -23,12 +23,17 @@ const App = ({ animalTemplate }) => {
     }
   }
 
+  const wrongGuess = () => {
+    setAnimals(animalTemplate.map(animal => ({...animal})));
+    setCurrentScore(0);
+  }
+
   return (
     <div className="container">
       <Scoreboard bestScore={bestScore} currentScore={currentScore} />
       <div className="animal-container">
         {animals.map(animal =>
-        <Animals key={animal.id} animal={animal} src={animal.src} correctGuess={correctGuess} />
+        <Animals key={animal.id} animal={animal} src={animal.src} correctGuess={correctGuess} wrongGuess={wrongGuess} />
         )}
       </div>
     </div>
