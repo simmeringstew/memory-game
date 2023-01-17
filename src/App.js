@@ -12,20 +12,13 @@ const App = ({ animalTemplate }) => {
   const [animals, setAnimals] = useState(animalTemplate.map(animal => ({...animal})));
 
   useEffect(() => {
-    let anyClicked = false;
-    for (let i = 0; i < animals.length; i++) {
-      if (animals[i].clicked) {
-        anyClicked = true;
-        break;
-      }
-    }
-    if (!anyClicked) {
+    if (currentScore === 0) {
       return;
     }
     const copy = [...animals];
     const shuffled = shuffle(copy);
     setAnimals(shuffled);
-  }, [currentScore, animals]);
+  }, [currentScore]);
 
   const correctGuess = (animal) => {
     const copy = [...animals];
