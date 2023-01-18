@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 // component imports
 import Scoreboard from "./components/scoreboard";
 import Animals from "./components/animals";
-
+import Modal from "./components/modal";
 
 const App = ({ animalTemplate }) => {
 
@@ -58,6 +58,7 @@ const App = ({ animalTemplate }) => {
         <Animals key={animal.id} animal={animal} src={animal.src} correctGuess={correctGuess} wrongGuess={wrongGuess} />
         )}
       </div>
+      <Modal currentScore={currentScore} reset={wrongGuess} />
     </div>
   );
 }
